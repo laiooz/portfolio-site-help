@@ -10,6 +10,7 @@ body {
   background: #fdfdfd;
   color: #333;
   line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll from full-width elements */
 }
 
 /* Navigation */
@@ -58,7 +59,6 @@ nav a:hover {
 .hero-inner {
   display: inline-block;
   position: relative;
-  cursor: pointer; /* indicates hover */
 }
 .mini {
   font-size: 14px;
@@ -84,16 +84,6 @@ nav a:hover {
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none; /* avoid blocking hover */
-}
-
-/* On hover: hide text, show image */
-.hero-inner:hover .hero-text,
-.hero-inner:hover #rotating-text,
-.hero-inner:hover .mini {
-  opacity: 0;
-}
-.hero-inner:hover .hero-img {
-  opacity: 1;
 }
 
 /* Grid Layout */
@@ -143,40 +133,45 @@ nav a:hover {
   margin-bottom: 12px;
 }
 
-/* Art Section with Carousel */
-.art-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
-  padding: 40px 20px;
+/* Art Section & Carousel */
+#art h2 {
+  text-align: center;
+  margin-bottom: 24px;
 }
-.instagram-embed {
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Assuming this was intended to be linked or used */
+
+.art-section {
+  width: 100%;
+  padding: 0; /* Remove padding to allow full width */
 }
 
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 700px; /* Increased height */
   overflow: hidden;
-  border-radius: 12px;
+  cursor: grab; /* Indicate draggable */
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background: #f9f9f9; /* Slight background for contained images */
+}
+.carousel-container:active {
+  cursor: grabbing;
 }
 
 .carousel-slide {
   display: flex;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s ease-in-out;
+  /* Transition is handled in JS for dragging, 
+     but added back when releasing for snap effect */
 }
 
 .carousel-slide img {
-  width: 100%;
-  min-width: 100%; /* Ensure images take full width for carousel */
-  object-fit: cover;
-  border-radius: 12px;
+  width: 100vw; /* Full viewport width per image */
+  min-width: 100vw; 
+  height: 100%;
+  object-fit: contain; /* Ensure image fits wholly inside */
+  user-select: none; /* Prevent image highlighting while dragging */
+  -webkit-user-drag: none;
 }
 
 /* Campaign Section */
@@ -203,6 +198,16 @@ nav a:hover {
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
+
+/* Center the Tweet embed */
+.tweet-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+  width: 100%;
+}
+
 
 /* About Section */
 .about-inner {
@@ -258,16 +263,5 @@ footer a:hover {
 }
 
 @media (max-width: 900px) {
-  .art-section {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Center the Tweet embed */
-.tweet-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 16px 0;
-  width: 100%;
+  /* Removed old art-section grid rule as it is now full width block */
 }
