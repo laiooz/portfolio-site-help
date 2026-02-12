@@ -1,0 +1,267 @@
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #fdfdfd;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll from full-width elements */
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav .logo {
+  font-weight: 600;
+}
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+nav a:hover {
+  color: #c9c49c;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin: 16px 0;
+}
+.hero h2 {
+  font-weight: 300;
+  color: #555;
+}
+.hero-inner {
+  display: inline-block;
+  position: relative;
+}
+.mini {
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* Hero Text and Image Transitions */
+.hero-text,
+#rotating-text {
+  transition: opacity 0.4s ease;
+}
+
+.hero-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none; /* avoid blocking hover */
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 40px 20px;
+}
+
+/* Project / Section Card */
+.project {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.project:hover {
+  transform: translateY(-4px);
+}
+.project h3 {
+  margin: 12px 0;
+  font-size: 1.2rem;
+}
+.project p {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.project a {
+  text-decoration: none;
+  color: #929178;
+  font-size: 14px;
+}
+.project a:hover {
+  text-decoration: underline;
+}
+
+/* Figma Embed Styling */
+.figma-embed {
+  width: 100%;
+  height: 450px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* Art Section & Carousel */
+#art h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.art-section {
+  width: 100%;
+  padding: 0; /* Remove padding to allow full width */
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 700px; /* Increased height */
+  overflow: hidden;
+  cursor: grab; /* Indicate draggable */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background: #f9f9f9; /* Slight background for contained images */
+}
+.carousel-container:active {
+  cursor: grabbing;
+}
+
+.carousel-slide {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* Transition is handled in JS for dragging, 
+     but added back when releasing for snap effect */
+}
+
+.carousel-slide img {
+  width: 100vw; /* Full viewport width per image */
+  min-width: 100vw; 
+  height: 100%;
+  object-fit: contain; /* Ensure image fits wholly inside */
+  user-select: none; /* Prevent image highlighting while dragging */
+  -webkit-user-drag: none;
+}
+
+/* Campaign Section */
+.campaign .project {
+  text-align: left;
+}
+.youtube-short {
+  position: relative;
+  padding-bottom: 177.78%; /* 9:16 ratio for vertical Short */
+  height: 0;
+  overflow: hidden;
+}
+.youtube-short iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.tiktok-embed-wrapper {
+  max-width: 400px; /* same width as YouTube Short */
+  margin: 16px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Center the Tweet embed */
+.tweet-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+  width: 100%;
+}
+
+
+/* About Section */
+.about-inner {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Case Study Story Card */
+.case-card {
+  text-align: left;
+}
+.case-story {
+  font-size: 14px;
+  color: #555;
+  margin: 12px 0 16px 0;
+  line-height: 1.6;
+}
+
+/* Metrics Badges */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.metric-badge {
+  background: #f3f6ff;
+  border: 1px solid #e2e8ff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5bdc;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 13px;
+  color: #888;
+  background: #fdfdfd;
+}
+footer a {
+  color: inherit;
+  text-decoration: none;
+  margin-left: 8px;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  /* Removed old art-section grid rule as it is now full width block */
+}
