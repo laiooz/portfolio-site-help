@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabby Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset & Base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #fdfdfd;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      font-weight: 600;
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #c9c49c;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin: 16px 0;
+    }
+    .hero h2 {
+      font-weight: 300;
+      color: #555;
+    }
+    .mini {
+      font-size: 14px;
+      color: #888;
+      letter-spacing: 1px;
+    }
+    /* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+}
+
+.hero-inner {
+  display: inline-block;
+  position: relative;
+  cursor: pointer; /* indicates hover */
+}
+
+/* Text and image */
+.hero-text,
+#rotating-text {
+  transition: opacity 0.4s ease;
+}
+
+.hero-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none; /* avoid blocking hover */
+}
+
+/* On hover: hide text, show image */
+.hero-inner:hover .hero-text,
+.hero-inner:hover #rotating-text,
+.hero-inner:hover .mini {
+  opacity: 0;
+}
+
+.hero-inner:hover .hero-img {
+  opacity: 1;
+}
+
+
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      padding: 40px 20px;
+    }
+
+    /* Project / Section Card */
+    .project {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .project:hover {
+      transform: translateY(-4px);
+    }
+    .project h3 {
+      margin: 12px 0;
+      font-size: 1.2rem;
+    }
+    .project p {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .project a {
+      text-decoration: none;
+      color: #929178;
+      font-size: 14px;
+    }
+    .project a:hover {
+      text-decoration: underline;
+    }
+
+    /* Figma Embed Styling */
+    .figma-embed {
+      width: 100%;
+      height: 450px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* Art Section with Carousel */
+    .art-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 40px 20px;
+    }
+    .instagram-embed {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .carousel-slide {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* Campaign Section */
+    .campaign .project {
+      text-align: left;
+    }
+    .youtube-short {
+  position: relative;
+  padding-bottom: 177.78%; /* 9:16 ratio for vertical Short */
+  height: 0;
+  overflow: hidden;
+}
+
+.youtube-short iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tiktok-embed-wrapper {
+  max-width: 400px; /* same width as YouTube Short */
+  margin: 16px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+    /* About Section */
+    .about-inner {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 13px;
+      color: #888;
+      background: #fdfdfd;
+    }
+    footer a {
+      color: inherit;
+      text-decoration: none;
+      margin-left: 8px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .art-section {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* Case Study Story Card */
+.case-card {
+  text-align: left;
+}
+
+.case-story {
+  font-size: 14px;
+  color: #555;
+  margin: 12px 0 16px 0;
+  line-height: 1.6;
+}
+
+/* Metrics Badges */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.metric-badge {
+  background: #f3f6ff;
+  border: 1px solid #e2e8ff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5bdc;
+}
+
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <h2 class="logo">Gabrielle Burley</h2>
+  <ul>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#art">Art</a></li>
+    <li><a href="#campaign">Campaigns</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="mini">Portfolio</p>
+      <h1 class="hero-text">Hello, I am Gabrielle</h1>
+      <h2 id="rotating-text"> <p>
+      Communication's student focused on digital design, marketing strategy,
+      and creating  user-centered experiences.
+    </p></h2>
+      <img src="image/IMG_8607 2.JPG" alt="Gabrielle" class="hero-img">
+    </div>
+  </div>
+</section>
+
+
+<!-- Projects Section -->
+<section id="projects" class="projects">
+  <h2>Selected Work</h2>
+  <div class="grid">
+
+    <!-- Project 1 -->
+    <div class="project">
+      <iframe 
+        class="figma-embed"
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/NbicHLHMOXntLxAPBrZE7l/module-2?node-id=53-227&p=f&scaling=scale-down&content-scaling=fixed&page-id=17%3A54&starting-point-node-id=53%3A227" 
+        allowfullscreen>
+      </iframe>
+      <h3>Figma UX Project - Brochure for Kyoto</h3>
+      <p>Interactive user flow + UI exploration</p>
+      <a href="https://www.figma.com/design/NbicHLHMOXntLxAPBrZE7l/module-2?node-id=233-445&t=2wimdNGS4TtF1EzF-1" target="_blank">View Full Project →</a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project">
+      <iframe 
+        class="figma-embed"
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/1sCX8uQOmkXlIdirDYKGcC/Portfolio?node-id=48-11&p=f&scaling=scale-down&content-scaling=fixed&page-id=1%3A2&starting-point-node-id=48%3A11&show-proto-sidebar=1" 
+        allowfullscreen>
+      </iframe>
+      <h3>Figma Responsive Layout</h3>
+      <p>Interactive layout exploration + prototype</p>
+      <a href="https://www.figma.com/design/NbicHLHMOXntLxAPBrZE7l/module-2?node-id=233-445&t=2wimdNGS4TtF1EzF-1" target="_blank">View Full Project →</a>
+    </div>
+
+  </div>
+<section id="campaign" class="campaign">
+  <h2>Campaigns & Marketing</h2>
+  <div class="grid">
+
+    <!-- K-pop Campaign Case Study -->
+    <div class="project case-study">
+      <!-- Description -->
+      <p>Debut K-pop member campaign: boosted fan engagement through video edits and interactions, culminating in a paid Times Square ad.</p>
+      
+      <!-- Metrics Badges -->
+      <div class="metrics">
+        <span class="metric-badge">5M+ Views</span>
+        <span class="metric-badge">📈 High Engagement</span>
+        <span class="metric-badge">🌎 Times Square Placement</span>
+      </div>
+
+      <!-- Tweet Embed -->
+      <div class="tweet-wrap">
+        <blockquote class="twitter-tweet">
+          <p lang="en" dir="ltr">[ 
+            <a href="https://twitter.com/hashtag/PARKGUNWOOK?src=hash&ref_src=twsrc%5Etfw">#PARKGUNWOOK</a> 
+            AD PREVIEW ]</p>
+          &mdash; ” (@gunwooklp) 
+          <a href="https://twitter.com/gunwooklp/status/1640235647448363013?ref_src=twsrc%5Etfw">
+            March 27, 2023
+          </a>
+        </blockquote>
+      </div>
+      
+      <!-- TikTok Embed -->
+      <div class="tiktok-embed-wrapper">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@gunwooklp" data-unique-id="gunwooklp" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
+          <section>
+            <a target="_blank" href="https://www.tiktok.com/@gunwooklp?refer=creator_embed">@gunwooklp</a>
+          </section>
+        </blockquote>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TikTok Script -->
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+
+
+<!-- Art Section -->
+<section id="art">
+  <h2>Digital Art</h2>
+  <div class="art-section">
+
+    <!-- Rotating Art Carousel -->
+    <div class="carousel-container">
+      <div class="carousel-slide">
+        <img src="image/IMG_1359.jpg" alt="Art 1">
+        <img src="image/IMG_1360.jpg" alt="Art 2">
+        <img src="image/IMG_1361.jpg" alt="Art 3">
+        <img src="image/IMG_0335.jpg" alt="Art 4">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Gabby</p>
+  <a href="https://www.linkedin.com/in/gabrielle-burley-nwaiga-663189218/" target="_blank">LinkedIn</a>
+  <p>ps! coded by me :&gt;><p>
+</footer>
+
+<!-- Twitter Script -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<!-- Carousel JS -->
+<script>
+  const carouselSlide = document.querySelector('.carousel-slide');
+  const carouselImages = document.querySelectorAll('.carousel-slide img');
+
+  let counter = 0;
+  const size = carouselImages[0].clientWidth;
+
+  function showNextSlide() {
+    counter++;
+    if(counter >= carouselImages.length) {
+      counter = 0;
+    }
+    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+  }
+
+  setInterval(showNextSlide, 3000); // rotate every 3 seconds
+</script>
+
+</body>
+</html>
